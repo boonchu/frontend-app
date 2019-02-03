@@ -1,0 +1,11 @@
+$ docker build -t boonchu/frontend-app:v1 .
+$ docker run -p 49160:8080 boonchu/frontend-app:v1
+
+> devon_crawford_website@1.0.1 dev /usr/src/app
+> nodemon app.js
+
+[nodemon] 1.17.3
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node app.js`
+Example app listening on port 8080!
