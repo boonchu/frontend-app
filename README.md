@@ -1,5 +1,5 @@
 # Personal-Website
-Node js version of a personal website that cloned from devon crawford's project. This is 
+Node js version of a personal website was cloned from devon crawford's project. This is 
 still in at early development and is not the live version of the site.
 
 # Get started
