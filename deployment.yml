@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: fe-webserver
+  name: fe-webserver
+spec:
+  selector:
+    matchLabels:
+      app: fe-webserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fe-webserver
+    spec:
+      restartPolicy: Always
+      containers:
+      - image: docker.io/boonchu/frontend-app:v1
+        name: fe-webserver
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 250m
+            memory: 512M
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe-webserver
+spec:
+  ports:
+  - name: web-port
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  type: ClusterIP
+  selector:
+    app: fe-webserver
